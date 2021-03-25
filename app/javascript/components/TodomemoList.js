@@ -9,20 +9,21 @@ const SearchAndButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 3px;
 `
 const SearchForm = styled.input`
-  font-size: 20px;
-  width: 100%;
-  height: 40px;
-  margin: 10px 0px;
-  padding: 10px;
+  font-size: 12px;
+  width: 80%;
+  height: 30px;
+  margin: 5px 0px;
+  padding: 3px;
 `
 const RemoveAllButton = styled.button`
-  width: 16%;
-  height: 40px;
+  width: 40%;
+  height: 30px;
   background: #f54242;
   border: none;
-  font-weight: 500;
+  font-weight: 5;
   margin-left: 10px;
   padding: 5px 10px;
   border-radius: 3px;
@@ -31,7 +32,7 @@ const RemoveAllButton = styled.button`
 `
 
 const TodoName = styled.span`
-  font-size: 27px;
+  font-size: 14px;
   ${({is_completed}) => is_completed && `
     opacity: 0.4;
   `}
@@ -43,7 +44,7 @@ const Row = styled.div`
   align-items: center;
   margin: 7px auto;
   padding: 10px;
-  font-size: 25px;
+  font-size: 14px;
 `
 
 const CheckedBox = styled.div`
@@ -82,7 +83,7 @@ function TodomemoList() {
 
 /* ダイヤルボックスを表示させてユーザーに全消去して良いか再確認する */
   const removeAllTodomemos = () => {
-    const sure = window.confirm('本当によろしいですか？');
+    const sure = window.confirm('本当に削除してよろしいですか？');
     if (sure) {
       axios.delete('api/v1/todomemos/destroy_all')
       .then(resp => {
@@ -110,7 +111,7 @@ function TodomemoList() {
 
   return (
     <>
-      <h1>リスト一覧</h1>
+      <h2>リスト一覧</h2>
       <SearchAndButton>
         <SearchForm
           type="text"
@@ -120,10 +121,9 @@ function TodomemoList() {
           }}
         />
         <RemoveAllButton onClick={removeAllTodomemos}>
-          全て削除
+          全削除
         </RemoveAllButton>
       </SearchAndButton>
-
       <div>
         {todomemos.filter((val) => {
           if(searchName === "") {
@@ -143,9 +143,11 @@ function TodomemoList() {
                   <ImCheckboxUnchecked onClick={() => updateIsCompleted(key, val) }/>
                 </UnCheckedBox>
               )}
-              <TodoName is_completed={val.is_completed}>
-                {val.name}
-              </TodoName>
+              <Link to={"/todomemos/" + val.id + "/edit"}>
+                <TodoName is_completed={val.is_completed}>
+                  {val.name}
+                </TodoName>
+              </Link>
               <Link to={"/todomemos/" + val.id + "/edit"}>
                 <EditButton>
                   <AiFillEdit />

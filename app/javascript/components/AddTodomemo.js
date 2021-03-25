@@ -10,13 +10,13 @@ import { props } from 'bluebird'
 const InputAndButton = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  padding: 3px;
 `
 
 const InputName = styled.input`
-  font-size: 20px;
+  font-size: 12px;
   width: 100%;
-  height: 40px;
+  height: 30px;
   padding: 2px 7px;
 `
 
@@ -26,7 +26,7 @@ const Button = styled.button`
   border-radius: 3px;
   margin-left: 10px;
   padding: 2px 10px;
-  background: #1E90FF;
+  background: gray;
   color: #fff;
   text-align: center;
   cursor: pointer;
@@ -59,8 +59,8 @@ toast.configure()
    }
 
    const notify = () => {
-     toast.success('Todomemo Successfully created!', {
-       position: 'bottom-center',
+     toast.info('登録を完了しました！', {
+       position: 'top-center',
        hideProgressBar: true
      })
    }
@@ -87,7 +87,7 @@ toast.configure()
 
   return (
     <>
-      <h1>新規登録</h1>
+      <h2>新規登録</h2>
       <InputAndButton>
         <InputName
           type="text"

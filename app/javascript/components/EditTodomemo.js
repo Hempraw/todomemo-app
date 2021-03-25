@@ -25,7 +25,8 @@ const IsCompletedButton = styled.button`
   font-weight: 500;
   font-size: 17px;
   padding: 5px 10px;
-  background: #f2a115;
+  margin: 0 10px;
+  background: skyblue;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -36,7 +37,6 @@ const EditButton = styled.button`
   font-weight: 500;
   font-size: 17px;
   padding: 5px 10px;
-  margin: 0 10px;
   background: #0ac620;
   border: none;
   border-radius: 3px;
@@ -66,8 +66,8 @@ function EditTodomemo(props) {
   const [currentTodomemo, setCurrentTodomemo] = useState(initialTodomemoState)
 
   const notify = () => {
-    toast.success('更新完了！', {
-      position: 'bottom-center',
+    toast.info('更新を完了しました！', {
+      position: 'top-center',
       hideProgressBar: true
     })
   }
@@ -129,7 +129,7 @@ function EditTodomemo(props) {
 
   return (
     <>
-      <h1>メモの編集</h1>
+      <h2>メモの編集</h2>
       <div>
         <div>
           <label htmlFor="name">現在のメモ名</label>
@@ -146,6 +146,9 @@ function EditTodomemo(props) {
             </CurrentStatus>
           </div>
         </div>
+        <EditButton onClick={updateTodomemo}>
+          更新
+        </EditButton>
         {currentTodomemo.is_completed ? (
           <IsCompletedButton onClick={()=> updateIsCompleted(currentTodomemo)}>
             未完了
@@ -155,9 +158,6 @@ function EditTodomemo(props) {
             完了
           </IsCompletedButton>
         )}
-        <EditButton onClick={updateTodomemo}>
-          更新
-        </EditButton>
         <DeleteButton onClick={deleteTodomemo}>
           削除
         </DeleteButton>

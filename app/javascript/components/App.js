@@ -12,8 +12,9 @@ const Navbar = styled.nav`
   background: #cccccc;
   min-height: 8vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center; 
+  padding: 0 10px;
   border: 1px solid black;
 `
 
@@ -27,7 +28,7 @@ const NavItems = styled.ul`
   display: flex;
   width: 600px;
   max-width: 40%;
-  justify-content: space-around;
+  justify-content: flex-end;
   list-style: none;
 `
 
@@ -39,10 +40,20 @@ const NavItem = styled.li`
     opacity: 1;
   }
 `
+const MainWrapper = styled.div`
+  display: flex;
+  height: calc(100vh - 8vh);
+`
+
 const Wrapper = styled.div`
-  width: 700px;
-  max-width: 85%;
-  margin: 20px auto;
+  width: 200px;
+  margin: 5px 0;
+`
+
+const RightWrapper = styled.div`
+  width: 80vw;
+  padding: 10px;
+  border-left: 1px solid black;
 `
 
 const AddNewButton = styled.button`
@@ -51,7 +62,7 @@ const AddNewButton = styled.button`
   border-radius: 3px;
   margin-left: 10px;
   padding: 2px 10px;
-  background: #1E90FF;
+  background: gray;
   color: #fff;
   text-align: center;
   cursor: pointer;
@@ -91,13 +102,19 @@ function App() {
           </NavItem>
         </NavItems>
       </Navbar>
-      <Wrapper>
-        <Switch>
-          <Route exact path='/todomemos' component={TodomemoList} />
-          <Route exact path='/todomemos/new' component={AddTodomemo} />
-          <Route path='/todomemos/:id/edit' component={EditTodomemo} />
-        </Switch>
-      </Wrapper>
+      <MainWrapper>
+        <Wrapper>
+          <Switch>
+            <Route exact path='/todomemos' component={TodomemoList} />
+          </Switch>
+        </Wrapper>
+          <RightWrapper>
+            <Switch>
+              <Route exact path='/todomemos/new' component={AddTodomemo} />
+              <Route path='/todomemos/:id/edit' component={EditTodomemo} />
+            </Switch>
+          </RightWrapper>
+      </MainWrapper>
     </>
   )
 }
