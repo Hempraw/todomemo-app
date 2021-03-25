@@ -4,10 +4,12 @@ import styled from 'styled-components'
 import AddTodomemo from './AddTodomemo'
 import TodomemoList from './TodomemoList'
 import EditTodomemo from './EditTodomemo'
+import { IoMdCreate } from 'react-icons/io'
+import { FaRegListAlt } from 'react-icons/fa'
 import './App.css'
 
 const Navbar = styled.nav`
-  background: #dbfffe;
+  background: #cccccc;
   min-height: 8vh;
   display: flex;
   justify-content: space-around;
@@ -19,14 +21,14 @@ const Logo = styled.div`
   font-weight: bold;
   font-size: 23px;
   letter-spacing: 3px;
+  color: #666666;
 `
 const NavItems = styled.ul`
   display: flex;
-  width: 400px;
+  width: 600px;
   max-width: 40%;
   justify-content: space-around;
   list-style: none;
-  border: 1px solid black;
 `
 
 const NavItem = styled.li`
@@ -43,6 +45,22 @@ const Wrapper = styled.div`
   margin: 20px auto;
 `
 
+const AddNewButton = styled.button`
+  font-size: 20px;
+  border: none;
+  border-radius: 3px;
+  margin-left: 10px;
+  padding: 2px 10px;
+  background: #1E90FF;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+`
+const AddIcon = styled.span`
+  display: flex;
+  align-items: center;
+`
+
 function App() {
   return (
     <>
@@ -53,12 +71,22 @@ function App() {
         <NavItems>
           <NavItem>
             <Link to='/todomemos'>
-              Todomemos
+            <AddNewButton>
+                <AddIcon>
+                  <FaRegListAlt />
+                  メモ一覧
+                </AddIcon>
+              </AddNewButton>
             </Link>
           </NavItem>
           <NavItem>
-             <Link to='/todomemos/new'>
-               Add New Todomemo
+            <Link to='/todomemos/new'>
+              <AddNewButton>
+                <AddIcon>
+                  <IoMdCreate />
+                  新規作成
+                </AddIcon>
+              </AddNewButton>
             </Link>
           </NavItem>
         </NavItems>

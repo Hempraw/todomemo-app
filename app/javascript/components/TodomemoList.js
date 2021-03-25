@@ -82,7 +82,7 @@ function TodomemoList() {
 
 /* ダイヤルボックスを表示させてユーザーに全消去して良いか再確認する */
   const removeAllTodomemos = () => {
-    const sure = window.confirm('Are you sure?');
+    const sure = window.confirm('本当によろしいですか？');
     if (sure) {
       axios.delete('api/v1/todomemos/destroy_all')
       .then(resp => {
@@ -110,7 +110,7 @@ function TodomemoList() {
 
   return (
     <>
-      <h1>Todomemo List</h1>
+      <h1>リスト一覧</h1>
       <SearchAndButton>
         <SearchForm
           type="text"
@@ -120,7 +120,7 @@ function TodomemoList() {
           }}
         />
         <RemoveAllButton onClick={removeAllTodomemos}>
-          RemoveAll
+          全て削除
         </RemoveAllButton>
       </SearchAndButton>
 

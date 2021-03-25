@@ -87,7 +87,7 @@ toast.configure()
 
   return (
     <>
-      <h1>New Todomemo</h1>
+      <h1>新規登録</h1>
       <InputAndButton>
         <InputName
           type="text"

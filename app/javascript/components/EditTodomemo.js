@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { props } from 'bluebird'
+import { FaAlignCenter } from 'react-icons/fa'
 
 const InputName = styled.input`
   font-size: 20px;
@@ -65,7 +66,7 @@ function EditTodomemo(props) {
   const [currentTodomemo, setCurrentTodomemo] = useState(initialTodomemoState)
 
   const notify = () => {
-    toast.success('Todomemo Successfully updated!', {
+    toast.success('更新完了！', {
       position: 'bottom-center',
       hideProgressBar: true
     })
@@ -87,7 +88,7 @@ function EditTodomemo(props) {
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setCurrentTodomemo({ ...currentTodomemo, [name]: value})
+    setCurrentTodomemo({ ...currentTodomemo, [name]: value })
   }
 
   const updateIsCompleted = val => {
@@ -114,7 +115,7 @@ function EditTodomemo(props) {
   }
 
   const deleteTodomemo = () => {
-    const sure = window.confirm('Are you sure?')
+    const sure = window.confirm('本当によろしいですか？')
     if (sure) {
       axios.delete(`/api/v1/todomemos/${currentTodomemo.id}`)
       .then(resp => {
@@ -128,10 +129,10 @@ function EditTodomemo(props) {
 
   return (
     <>
-      <h1>Editing Todomemo</h1>
+      <h1>メモの編集</h1>
       <div>
         <div>
-          <label htmlFor="name">Current Name</label>
+          <label htmlFor="name">現在のメモ名</label>
           <InputName
             type="text"
             name="name"
@@ -139,26 +140,26 @@ function EditTodomemo(props) {
             onChange={handleInputChange}
           />
           <div>
-            <span>Current Status</span><br/>
+            <span>状態</span><br/>
             <CurrentStatus>
-              {currentTodomemo.is_completed ? "Completed" : "Uncompleted" }
+              {currentTodomemo.is_completed ? "完了" : "未完了" }
             </CurrentStatus>
           </div>
         </div>
         {currentTodomemo.is_completed ? (
           <IsCompletedButton onClick={()=> updateIsCompleted(currentTodomemo)}>
-            Uncompleted
+            未完了
           </IsCompletedButton>
         ) : (
           <IsCompletedButton onClick={() => updateIsCompleted(currentTodomemo)}>
-            Completed
+            完了
           </IsCompletedButton>
         )}
         <EditButton onClick={updateTodomemo}>
-          Update
+          更新
         </EditButton>
         <DeleteButton onClick={deleteTodomemo}>
-          Delete
+          削除
         </DeleteButton>
       </div>
     </>
