@@ -1,0 +1,2 @@
+class Todomemo < ApplicationRecord
+end
